@@ -5,16 +5,23 @@ let score = JSON.parse(localStorage.getItem('score')) || {
   };
   
   updateScoreElement();
-  
-  /*
-  if (!score) {
-    score = {
-      wins: 0,
-      losses: 0,
-      ties: 0
-    };
-  }
-  */
+
+ document.querySelector('.js-rock-button').addEventListener('click',()=>{
+  playGame('rock')
+ });
+ document.querySelector('.js-paper-button').addEventListener('click',()=>{
+  playGame('paper')
+ });
+ document.querySelector('.js-scissors-button').addEventListener('click',()=>{
+  playGame('scissors')
+ })
+ document.getElementById('resetButton').addEventListener('click', () => {
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem('score');
+  updateScoreElement();
+});
   
   function playGame(playerMove) {
     const computerMove = pickComputerMove();
